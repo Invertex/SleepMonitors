@@ -5,7 +5,8 @@ Helpful if you're one of those people that needs to leave their PC running but d
 </br></br>
 
 <h2>Usage:</h2>
-Simply launch the executable and your monitors should go to sleep.<br>
-A small message will display on screen telling you it's about to do so.<br>
+
+Simply launch the executable and your monitors should go to sleep.<br />
+A small message will display on screen telling you it's about to do so.<br />
 This message can be hidden with a `-s` launch command like so: `SleepMonitors.exe -s`
 
