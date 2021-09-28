@@ -109,12 +109,12 @@ namespace Invertex.SleepMonitors
                 for (int i = 0; i < args.Length; i++)
                 {
                     var arg = args[i];
-                    if (arg == "-s" || arg == "-silent")
+                    if (arg.ToLower() == "-s" || arg.ToLower() == "-silent")
                     {
                         isSilent = true;
                         sleepDelayInSeconds = 0;
                     }
-                    if (i < args.Length - 1 && arg == "-sleepDelaySeconds")
+                    if (i < args.Length - 1 && arg.ToLower() == "-sleepdelayseconds")
                     {
                         if (int.TryParse(args[i + 1], out int sleepDelay) && sleepDelay >= 0)
                         {
