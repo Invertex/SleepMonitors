@@ -7,6 +7,7 @@ Helpful if you're one of those people that needs to leave their PC running but d
 <h2>Usage:</h2>
 
 Simply launch the executable and your monitors should go to sleep.<br />
-A small message will display on screen telling you it's about to do so.<br />
-This message can be hidden with a `-s` launch command like so: `SleepMonitors.exe -s`
-
+A small message will display on screen counting down to when it will do so (and may be cancelled by pressing ESC).<br />
+This message can be hidden with a `-s` or `silent` launch command like so: `SleepMonitors.exe -s`
+You may also set the delay before the app puts your monitors to sleep using `-sleepDelaySeconds 5` as an example to wait 5 seconds.
+This helps avoid mouse movements after clicking from potentially waking the sleep. (This timer will happen whether in silent mode or not.)
