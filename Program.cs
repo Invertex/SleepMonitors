@@ -1,8 +1,10 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
 
 namespace Invertex.SleepMonitors
 {
@@ -92,8 +94,20 @@ namespace Invertex.SleepMonitors
 
         public static void ExecuteSleep(IntPtr appHandle)
         {
-            //Use our created Form handle to SendMessage to so that our program doesn't hang and we have full control over closing the thread.
-            SendMessage(appHandle, WM_SYSCOMMAND, (IntPtr)SC_MONITORPOWER, (IntPtr)2);
+            if (Environment.GetEnvironmentVariable("windir") != null)
+            {
+                // Platform is Windows
+                // Use our created Form handle to SendMessage to so that our program doesn't hang and we have full control over closing the thread.
+                SendMessage(appHandle, WM_SYSCOMMAND, (IntPtr)SC_MONITORPOWER, (IntPtr)2);
+            }
+            else if (File.Exists(@"/proc/sys/kernel/ostype"))
+            {
+                // Platform is Linux
+                // Use bash to send a command to turn off screen
+                ProcessStartInfo startInfo = new ProcessStartInfo() { FileName = "/bin/bash", Arguments = "-c 'xset dpms force off'", }; 
+                Process proc = new Process() { StartInfo = startInfo, };
+                proc.Start();
+            }
         }
 
         public struct Options
